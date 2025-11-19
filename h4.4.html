@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H4/4 - Adatbázis Terv</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #eef2ff; padding: 20px; color: #333; margin: 0; line-height: 1.6; }
+        .card { background: white; max-width: 900px; margin: 0 auto; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 6px solid #4f46e5; }
+        h1 { color: #312e81; text-align: center; margin-bottom: 20px; }
+        h2 { color: #4338ca; background: #e0e7ff; padding: 10px 15px; border-radius: 6px; margin-top: 40px; border-left: 5px solid #4f46e5; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        th { background: #312e81; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:nth-child(odd) { background: #eef2ff; }
+        .svg-container { display: flex; justify-content: center; margin: 30px 0; background: #fff; padding: 20px; border: 1px solid #e0e7ff; border-radius: 8px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>4. [cite_start]Adatbázis Terv (ER Diagram) [cite: 177-184]</h1>
+    <p>Az adatok tárolására relációs adatbázist (RDBMS) használunk, konkrétan SQLite-ot. Az adatbázis sémáját a <strong>3. normálformára (3NF)</strong> hoztuk a redundancia elkerülése és az adatkonzisztencia biztosítása érdekében. A legfontosabb kapcsolat az "Egy-a-Többhöz" (1:N) kapcsolat a Székek és a Foglalások között, hiszen egy székre az idők folyamán több foglalás is érkezhet (különböző előadásokra).</p>
+    
+    <div class="svg-container">
+        <svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="crowfoot" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,6 L10,6 M10,0 L10,12 M0,0 L10,6 L0,12" fill="none" stroke="#333" stroke-width="1"/></marker></defs>
+            <rect x="20" y="50" width="100" height="80" fill="#fff" stroke="#333" stroke-width="2"/>
+            <text x="70" y="70" text-anchor="middle" font-weight="bold" font-size="14">Shows</text>
+            <line x1="20" y1="80" x2="120" y2="80" stroke="#333"/>
+            <rect x="200" y="50" width="100" height="80" fill="#e0e7ff" stroke="#333" stroke-width="2"/>
+            <text x="250" y="70" text-anchor="middle" font-weight="bold" font-size="14">Bookings</text>
+            <line x1="200" y1="80" x2="300" y2="80" stroke="#333"/>
+            <text x="250" y="100" text-anchor="middle" font-size="10">FK: seat_id</text>
+            <text x="250" y="115" text-anchor="middle" font-size="10">visitor_height</text>
+            <rect x="380" y="50" width="100" height="80" fill="#fff" stroke="#333" stroke-width="2"/>
+            <text x="430" y="70" text-anchor="middle" font-weight="bold" font-size="14">Seats</text>
+            <line x1="380" y1="80" x2="480" y2="80" stroke="#333"/>
+            <text x="430" y="100" text-anchor="middle" font-size="10">PK: id</text>
+            <line x1="120" y1="90" x2="200" y2="90" stroke="#333" stroke-width="1.5" marker-end="url(#crowfoot)"/>
+            <line x1="300" y1="90" x2="380" y2="90" stroke="#333" stroke-width="1.5" />
+            <circle cx="370" cy="90" r="3" fill="white" stroke="#333"/>
+            <line x1="373" y1="85" x2="373" y2="95" stroke="#333"/>
+        </svg>
+    </div>
+
+    <h3>Adattáblák szerkezete</h3>
+    <table>
+        <tr><th>Tábla neve</th><th>Mezők (PK = Elsődleges kulcs)</th><th>Leírás</th></tr>
+        <tr><td><code>seats</code></td><td><code>id (PK)</code>, <code>row_num</code>, <code>col_num</code>, <code>base_height</code></td><td>A nézőtér fizikai székeinek statikus adatai. A `base_height` a padlószint magasságát jelöli.</td></tr>
+        <tr><td><code>bookings</code></td><td><code>id (PK)</code>, <code>seat_id (FK)</code>, <code>visitor_height</code>, <code>price</code></td><td>A konkrét foglalások. Itt tároljuk a látogató magasságát (`visitor_height`), ami kritikus a blokkolás számításához.</td></tr>
+        <tr><td><code>shows</code></td><td><code>id (PK)</code>, <code>title</code>, <code>start_time</code></td><td>Az előadások listája, amihez a foglalások kapcsolódnak.</td></tr>
+    </table>
+</div>
+
+</body>
+</html>
