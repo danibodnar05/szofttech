@@ -23,10 +23,10 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Megakadályozza a dupla görgetősávot */
+            overflow: hidden;
         }
 
-        /* --- HEADER (FIX FELSŐ SÁV) --- */
+        /* --- HEADER --- */
         .mobile-header {
             height: var(--header-height);
             background-color: var(--header-bg);
@@ -54,7 +54,7 @@
 
         .app-title span { color: var(--accent); }
 
-        /* --- OLDALSÓ MENÜ (SLIDE-IN) --- */
+        /* --- OLDALSÓ MENÜ --- */
         .sidebar {
             position: fixed;
             top: 0;
@@ -138,12 +138,12 @@
             pointer-events: auto;
         }
 
-        /* --- TARTALOM (IFRAME) --- */
+        /* --- TARTALOM --- */
         .content-area {
             flex-grow: 1;
             position: relative;
             background: #fff;
-            overflow: hidden; /* Fontos a görgetéshez */
+            overflow: hidden;
         }
 
         iframe {
@@ -153,7 +153,6 @@
             display: block;
         }
 
-        /* Loading Spinner (Opcionális extra) */
         .loader {
             position: absolute;
             top: 50%; left: 50%;
@@ -162,7 +161,6 @@
             z-index: 0;
             font-size: 0.9rem;
         }
-
     </style>
 </head>
 <body>
@@ -187,7 +185,13 @@
             <a onclick="loadPage('h3.4.html', this)" class="nav-item">4. Kézikönyv v1</a>
 
             <div class="nav-group-title">Tervezés (H4)</div>
-            <a onclick="loadPage('h4.html', this)" class="nav-item">H4 - Teljes Tervezés</a>
+            <a onclick="loadPage('h4.1.html', this)" class="nav-item">1. Analízis Modell</a>
+            <a onclick="loadPage('h4.2.html', this)" class="nav-item">2. Rendszerterv</a>
+            <a onclick="loadPage('h4.3.html', this)" class="nav-item">3. UI Terv</a>
+            <a onclick="loadPage('h4.4.html', this)" class="nav-item">4. Adatbázis Terv</a>
+            <a onclick="loadPage('h4.5.html', this)" class="nav-item">5. Szótár v1.1</a>
+            <a onclick="loadPage('h4.6.html', this)" class="nav-item">6. Felh. Doksi v1.1</a>
+            <a onclick="loadPage('h4.7.html', this)" class="nav-item">7. Munkanapló v1.1</a>
         </div>
     </nav>
 
@@ -196,7 +200,8 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </div>
         <div class="app-title">ClearView <span>Hub</span></div>
-        <div style="width: 24px;"></div> </header>
+        <div style="width: 24px;"></div> 
+    </header>
 
     <main class="content-area">
         <div class="loader">Betöltés...</div>
@@ -220,14 +225,9 @@
         }
 
         function loadPage(url, element) {
-            // URL csere
             viewer.src = url;
-            
-            // Aktív osztály átrakása
             navItems.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
-
-            // Menü bezárása (kis késleltetéssel a jobb UX miatt)
             setTimeout(closeMenu, 150);
         }
     </script>
