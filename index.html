@@ -40,18 +40,8 @@
             flex-shrink: 0;
         }
 
-        .menu-btn {
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .app-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
+        .menu-btn { font-size: 1.8rem; cursor: pointer; padding: 5px; }
+        .app-title { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
         .app-title span { color: var(--accent); }
 
         /* --- OLDALSÓ MENÜ --- */
@@ -71,9 +61,7 @@
             box-shadow: 5px 0 25px rgba(0,0,0,0.5);
         }
 
-        .sidebar.open {
-            transform: translateX(0);
-        }
+        .sidebar.open { transform: translateX(0); }
 
         .sidebar-header {
             height: var(--header-height);
@@ -121,7 +109,14 @@
             font-weight: 600;
         }
 
-        /* --- SÖTÉTÍTŐ RÉTEG --- */
+        /* Home gomb külön stílus */
+        .nav-home {
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+            border-left: 4px solid #64748b;
+        }
+
+        /* --- SÖTÉTÍTŐ --- */
         .overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -132,34 +127,21 @@
             transition: opacity 0.3s;
             backdrop-filter: blur(2px);
         }
-
-        .overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .overlay.active { opacity: 1; pointer-events: auto; }
 
         /* --- TARTALOM --- */
         .content-area {
             flex-grow: 1;
             position: relative;
-            background: #fff;
+            background: #f1f5f9;
             overflow: hidden;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
+        iframe { width: 100%; height: 100%; border: none; display: block; }
+        
         .loader {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: #cbd5e1;
-            z-index: 0;
-            font-size: 0.9rem;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); color: #cbd5e1; z-index: 0;
         }
     </style>
 </head>
@@ -169,13 +151,15 @@
 
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <span>Dokumentációk</span>
+            <span>Menü</span>
             <div class="close-btn" onclick="closeMenu()">✕</div>
         </div>
         
         <div class="nav-scroll">
+            <a onclick="loadPage('home.html', this)" class="nav-item nav-home active">🏠 Kezdőlap</a>
+
             <div class="nav-group-title">Projektindítás</div>
-            <a onclick="loadPage('h1.html', this)" class="nav-item active">H1 - Projektterv</a>
+            <a onclick="loadPage('h1.html', this)" class="nav-item">H1 - Projektterv</a>
             <a onclick="loadPage('h2.html', this)" class="nav-item">H2 - Vízió & Analízis</a>
 
             <div class="nav-group-title">Specifikáció (H3)</div>
@@ -205,7 +189,7 @@
 
     <main class="content-area">
         <div class="loader">Betöltés...</div>
-        <iframe id="viewer" src="h1.html"></iframe>
+        <iframe id="viewer" src="home.html"></iframe>
     </main>
 
     <script>
