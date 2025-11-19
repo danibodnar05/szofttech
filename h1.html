@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H1 - Projektterv</title>
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f1f5f9; color: #334155; margin: 0; padding: 20px; line-height: 1.6; }
+        .card { background: white; max-width: 850px; margin: 0 auto; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; border-bottom: 3px solid #3b82f6; padding-bottom: 10px; display: inline-block; margin-top: 0; font-size: 2rem; }
+        h2 { color: #1e293b; margin-top: 40px; font-size: 1.4rem; display: flex; align-items: center; }
+        h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: #3b82f6; margin-right: 12px; border-radius: 4px; }
+        h3 { color: #475569; font-size: 1.1rem; margin-top: 25px; font-weight: 600; }
+        
+        /* Info Box */
+        .meta-box { background: #eff6ff; border-left: 5px solid #3b82f6; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .meta-box p { margin: 5px 0; color: #1e40af; font-weight: 500; }
+
+        /* Table Styling */
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        th { background: #1e293b; color: white; padding: 15px; text-align: left; font-weight: 600; }
+        td { padding: 15px; border-bottom: 1px solid #e2e8f0; background: white; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        tr:hover td { background: #f1f5f9; }
+
+        /* List Styling */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; position: relative; }
+        li::marker { color: #3b82f6; font-weight: bold; }
+        
+        /* Signature */
+        .signature-section { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 20px; border-top: 2px dashed #cbd5e1; }
+        .signature-box { text-align: center; width: 40%; }
+        .line { border-bottom: 1px solid #334155; margin-bottom: 10px; height: 30px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>H1 - Projektterv</h1>
+    
+    <div class="meta-box">
+        <p>PROJEKT: Magasság-optimalizált Színházi Jegyértékesítő (ClearView Theater)</p>
+        <p>CSAPAT: dájnamik DUO</p>
+        <p>DÁTUM: 2025. szeptember 23.</p>
+    </div>
+
+    <h2>1. Csapattagok és struktúra </h2>
+    <p>A projekt megvalósításáért a <strong>dájnamik DUO</strong> csapat felel. A feladatok elosztása a csapattagok erősségei és szakmai érdeklődése alapján történt.</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%">Név</th>
+                <th style="width: 30%">Szerepkör</th>
+                <th>Részletes felelősségek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Matyi Bernát</td>
+                <td><strong>Backend / Lead</strong></td>
+                <td>Szerveroldali logika (Python), adatbázis-tervezés (SQLite), sprintek koordinálása.</td>
+            </tr>
+            <tr>
+                <td>Bodnár Dániel</td>
+                <td><strong>Frontend / Docs</strong></td>
+                <td>GUI tervezés (Tkinter), dokumentáció (SRS, Vízió), felhasználói kézikönyv.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Csapatkommunikáció</h3>
+    <p>Hibrid modell: napi egyeztetés Discordon, heti státuszmegbeszélés keddenként. Kódmegosztás GitHubon keresztül.</p>
+
+    <h2>2. Mérföldkövek (H1-H5) </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mérföldkő</th>
+                <th>Leszállítandó termékek</th>
+                <th>Ütemezés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>H1</strong></td>
+                <td>Projektterv, struktúra, technológiaválasztás.</td>
+                <td>3. hét</td>
+            </tr>
+            <tr>
+                <td><strong>H2</strong></td>
+                <td>Vízió dokumentum, Kockázatelemzés, Munkanapló.</td>
+                <td>5. hét</td>
+            </tr>
+            <tr>
+                <td><strong>H3</strong></td>
+                <td>SRS, Szótár, Kézikönyv v1, Use Casek.</td>
+                <td>9. hét</td>
+            </tr>
+            <tr>
+                <td><strong>H4</strong></td>
+                <td>Analízis modell, Rendszerterv, UI tervek, DB terv.</td>
+                <td>11. hét</td>
+            </tr>
+            <tr>
+                <td><strong>H5</strong></td>
+                <td>Prototípus, Tesztelési jegyzőkönyv, Bemutató.</td>
+                <td>13. hét</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Programozási nyelvek és eszközök </h2>
+    <ul>
+        <li><strong>Python 3.10+:</strong> Gyors fejlesztés, gazdag könyvtárkészlet.</li>
+        <li><strong>SQLite:</strong> Szervermentes, hordozható adatbázis.</li>
+        <li><strong>PyCharm / VS Code:</strong> Modern IDE hibakeresővel.</li>
+        <li><strong>Git & GitHub:</strong> Verziókezelés és kollaboráció.</li>
+        <li><strong>Tkinter / PyQt:</strong> Asztali GUI keretrendszer.</li>
+    </ul>
+
+    <h2>4. Tervezett módszerek </h2>
+    <ul>
+        <li><strong>Agile (Scrum-szerű):</strong> 2 hetes sprintek, folyamatos visszacsatolás.</li>
+        <li><strong>Tesztelés:</strong> Unit tesztek (logika) és Manuális tesztek (GUI).</li>
+        <li><strong>Telepítés:</strong> `PyInstaller` segítségével .exe fájl készítése.</li>
+    </ul>
+
+    <div class="signature-section">
+        <div class="signature-box">
+            <div class="line"></div>
+            <p>Matyi Bernát (Lead)</p>
+        </div>
+        <div class="signature-box">
+            <div class="line"></div>
+            <p>Oktató aláírása</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

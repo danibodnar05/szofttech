@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3 - Szótár</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fafafa; padding: 20px; color: #333; }
+        .card { background: white; max-width: 850px; margin: 0 auto; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 5px solid #0891b2; }
+        h1 { color: #155e75; margin-top: 0; }
+        
+        .term-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
+        .term-item:last-child { border-bottom: none; }
+        .term-title { font-size: 1.1rem; font-weight: 700; color: #0891b2; margin-bottom: 5px; }
+        .term-def { color: #4b5563; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    [cite_start]<h1>Szótár (Domain) [cite: 69-71]</h1>
+    <p>A projektben használt speciális kifejezések gyűjteménye.</p>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <div class="term-item">
+        <div class="term-title">Látósugár (Sightline)</div>
+        <div class="term-def">Képzeletbeli egyenes vonal a néző szeme és a színpad fókuszpontja között. Ha ezt fizikai akadály (fej) megszakítja, a látás korlátozott.</div>
+    </div>
+
+    <div class="term-item">
+        <div class="term-title">Blokkolás (Obstruction)</div>
+        <div class="term-def">Rendszerállapot, amikor az algoritmus jelzi, hogy az előtte ülő magassága miatt a színpad < 70%-a látható.</div>
+    </div>
+
+    <div class="term-item">
+        <div class="term-title">Magassági küszöb</div>
+        <div class="term-def">Konfigurálható érték (alap: 120 cm), ami elválasztja a gyerek/felnőtt árkategóriát.</div>
+    </div>
+
+    <div class="term-item">
+        <div class="term-title">Nézőtér Mátrix</div>
+        <div class="term-def">Az ülések sorokba és oszlopokba rendezett digitális leképezése az adatbázisban (Grid).</div>
+    </div>
+</div>
+
+</body>
+</html>

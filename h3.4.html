@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3 - Kézikönyv</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fff1f2; padding: 20px; color: #333; }
+        .card { background: white; max-width: 850px; margin: 0 auto; padding: 40px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid #e11d48; }
+        h1 { color: #9f1239; }
+        h2 { color: #be123c; margin-top: 40px; border-bottom: 2px solid #ffe4e6; padding-bottom: 5px; }
+
+        /* Step List Styling */
+        ol.steps { list-style: none; counter-reset: step-counter; padding: 0; }
+        ol.steps li { position: relative; padding-left: 50px; margin-bottom: 20px; }
+        ol.steps li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute; left: 0; top: 0;
+            width: 35px; height: 35px; background: #e11d48; color: white;
+            border-radius: 50%; text-align: center; line-height: 35px; font-weight: bold;
+        }
+        .step-title { font-weight: bold; color: #881337; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Felhasználói Dokumentáció v1.0 </h1>
+    <p>Útmutató a ClearView Theater rendszer használatához pénztárosoknak.</p>
+
+    <h2>Telepítés</h2>
+    <p>A szoftver <strong>Portable</strong> (hordozható). Csak másolja a <code>ClearView.exe</code> fájlt az Asztalra és indítsa el. Telepítés nem szükséges.</p>
+
+    <h2>Jegyértékesítés lépései</h2>
+    <ol class="steps">
+        <li>
+            <span class="step-title">Indítás</span>
+            Nyissa meg a programot. Betöltődik a nézőtér térképe.
+        </li>
+        <li>
+            <span class="step-title">Helyválasztás</span>
+            Kattintson egy szabad (<span style="color:green; font-weight:bold;">ZÖLD</span>) székre.
+        </li>
+        <li>
+            <span class="step-title">Adatbevitel</span>
+            Kérdezze meg a néző magasságát, és írja be a felugró ablakba (cm-ben).
+        </li>
+        <li>
+            <span class="step-title">Rendszerellenőrzés</span>
+            Ha a keret <span style="color:red; font-weight:bold;">PIROS</span> lesz, a rendszer blokkolást észlel (magas ember ül előtte). Ajánljon másik helyet!
+        </li>
+        <li>
+            <span class="step-title">Jegykiadás</span>
+            Kattintson a "Nyomtatás" gombra a tranzakció lezárásához.
+        </li>
+    </ol>
+</div>
+
+</body>
+</html>

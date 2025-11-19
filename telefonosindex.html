@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ClearView Mobile Hub</title>
+    <style>
+        :root {
+            --header-bg: #0f172a;
+            --sidebar-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent: #38bdf8;
+            --header-height: 60px;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Megakadályozza a dupla görgetősávot */
+        }
+
+        /* --- HEADER (FIX FELSŐ SÁV) --- */
+        .mobile-header {
+            height: var(--header-height);
+            background-color: var(--header-bg);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1100;
+            flex-shrink: 0;
+        }
+
+        .menu-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .app-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .app-title span { color: var(--accent); }
+
+        /* --- OLDALSÓ MENÜ (SLIDE-IN) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            color: var(--text-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-weight: bold;
+        }
+
+        .close-btn { font-size: 1.5rem; cursor: pointer; color: #94a3b8; }
+
+        .nav-scroll {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 10px 0;
+        }
+
+        .nav-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #64748b;
+            padding: 15px 20px 5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-item:active { background-color: rgba(255,255,255,0.05); }
+
+        .nav-item.active {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            border-left-color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- SÖTÉTÍTŐ RÉTEG --- */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(2px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* --- TARTALOM (IFRAME) --- */
+        .content-area {
+            flex-grow: 1;
+            position: relative;
+            background: #fff;
+            overflow: hidden; /* Fontos a görgetéshez */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Spinner (Opcionális extra) */
+        .loader {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #cbd5e1;
+            z-index: 0;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay" onclick="closeMenu()"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span>Dokumentációk</span>
+            <div class="close-btn" onclick="closeMenu()">✕</div>
+        </div>
+        
+        <div class="nav-scroll">
+            <div class="nav-group-title">Projektindítás</div>
+            <a onclick="loadPage('h1.html', this)" class="nav-item active">H1 - Projektterv</a>
+            <a onclick="loadPage('h2.html', this)" class="nav-item">H2 - Vízió & Analízis</a>
+
+            <div class="nav-group-title">Specifikáció (H3)</div>
+            <a onclick="loadPage('h3.1.html', this)" class="nav-item">1. Áttekintés & Napló</a>
+            <a onclick="loadPage('h3.2.html', this)" class="nav-item">2. SRS (Funkciók)</a>
+            <a onclick="loadPage('h3.3.html', this)" class="nav-item">3. Szótár</a>
+            <a onclick="loadPage('h3.4.html', this)" class="nav-item">4. Kézikönyv v1</a>
+
+            <div class="nav-group-title">Tervezés (H4)</div>
+            <a onclick="loadPage('h4.html', this)" class="nav-item">H4 - Teljes Tervezés</a>
+        </div>
+    </nav>
+
+    <header class="mobile-header">
+        <div class="menu-btn" onclick="openMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </div>
+        <div class="app-title">ClearView <span>Hub</span></div>
+        <div style="width: 24px;"></div> </header>
+
+    <main class="content-area">
+        <div class="loader">Betöltés...</div>
+        <iframe id="viewer" src="h1.html"></iframe>
+    </main>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.querySelector('.overlay');
+        const viewer = document.getElementById('viewer');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function openMenu() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        function closeMenu() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        function loadPage(url, element) {
+            // URL csere
+            viewer.src = url;
+            
+            // Aktív osztály átrakása
+            navItems.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            // Menü bezárása (kis késleltetéssel a jobb UX miatt)
+            setTimeout(closeMenu, 150);
+        }
+    </script>
+
+</body>
+</html>

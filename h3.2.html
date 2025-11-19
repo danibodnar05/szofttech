@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3 - SRS</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fff7ed; padding: 20px; margin: 0; }
+        .card { background: white; max-width: 900px; margin: 0 auto; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 6px solid #ea580c; }
+        h1 { color: #9a3412; text-align: center; }
+        h2 { color: #c2410c; border-left: 5px solid #fb923c; padding-left: 15px; margin-top: 40px; background: #ffedd5; padding-top: 5px; padding-bottom: 5px; border-radius: 0 8px 8px 0; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #fed7aa; }
+        th { background: #ea580c; color: white; padding: 12px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #ffedd5; vertical-align: top; }
+        tr:nth-child(even) { background: #fff7ed; }
+
+        /* Az új SVG tárolója */
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            background: #fff;
+            padding: 10px;
+            border: 1px dashed #fed7aa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Szoftverkövetelmény-specifikáció (SRS) </h1>
+
+    <h2>2.3 Rendszerfunkciók (Funkcionális követelmények)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th width="25%">Funkció</th>
+                <th width="50%">Leírás</th>
+                <th width="25%">Bemenet / Kimenet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Magasságalapú árazás</strong></td>
+                <td>A rendszer a megadott cm alapján automatikusan besorolja a nézőt (pl. Gyerek < 120cm) és kalkulálja a kedvezményes árat.</td>
+                <td>Bemenet: 110 cm<br>Kimenet: 1500 Ft</td>
+            </tr>
+            <tr>
+                <td><strong>Intelligens Helyfoglalás</strong></td>
+                <td>A "Jegy eladása" gomb megnyomásakor a rendszer ellenőrzi az előtte lévő sor foglaltságát. Ha magasabb ember ül ott, figyelmeztetést küld.</td>
+                <td>Bemenet: Szék ID<br>Kimenet: Figyelmeztetés</td>
+            </tr>
+            <tr>
+                <td><strong>Nézőtér Vizualizáció</strong></td>
+                <td>A székek állapotának grafikus megjelenítése színkódokkal (Szabad, Foglalt, Blokkolt).</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.4 Use Case Diagram és Leírás</h2>
+    <p>A rendszer felhasználási esetei vizuálisan:</p>
+    
+    <div class="svg-container">
+        <svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .actor-head { fill: #fff; stroke: #ea580c; stroke-width: 2; }
+                .actor-body { stroke: #ea580c; stroke-width: 2; }
+                .system-box { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; stroke-dasharray: 5,5; }
+                .usecase { fill: #fff; stroke: #c2410c; stroke-width: 2; }
+                .line { stroke: #333; stroke-width: 1.5; }
+                .text { font-family: sans-serif; font-size: 12px; fill: #333; text-anchor: middle; }
+                .label { font-weight: bold; font-size: 14px; }
+            </style>
+
+            <rect x="150" y="20" width="300" height="310" rx="10" class="system-box" />
+            <text x="300" y="45" class="text label">ClearView Jegyrendszer</text>
+
+            <circle cx="70" cy="100" r="15" class="actor-head" />
+            <line x1="70" y1="115" x2="70" y2="150" class="actor-body" /> <line x1="50" y1="125" x2="90" y2="125" class="actor-body" /> <line x1="70" y1="150" x2="50" y2="180" class="actor-body" /> <line x1="70" y1="150" x2="90" y2="180" class="actor-body" /> <text x="70" y="200" class="text label">Pénztáros</text>
+
+            <circle cx="530" cy="150" r="15" class="actor-head" />
+            <line x1="530" y1="165" x2="530" y2="200" class="actor-body" />
+            <line x1="510" y1="175" x2="550" y2="175" class="actor-body" />
+            <line x1="530" y1="200" x2="510" y2="230" class="actor-body" />
+            <line x1="530" y1="200" x2="550" y2="230" class="actor-body" />
+            <text x="530" y="250" class="text label">Admin</text>
+
+            <ellipse cx="300" cy="100" rx="80" ry="30" class="usecase" />
+            <text x="300" y="105" class="text">Jegy értékesítése</text>
+
+            <ellipse cx="300" cy="180" rx="80" ry="30" class="usecase" />
+            <text x="300" y="185" class="text">Magasság rögzítése</text>
+
+            <ellipse cx="300" cy="260" rx="80" ry="30" class="usecase" />
+            <text x="300" y="265" class="text">Árak beállítása</text>
+
+            <line x1="90" y1="120" x2="220" y2="100" class="line" />
+            <line x1="90" y1="140" x2="220" y2="180" class="line" />
+
+            <line x1="510" y1="180" x2="380" y2="260" class="line" />
+
+        </svg>
+    </div>
+
+    <p><strong>Kiemelt Use Case: Jegy értékesítése</strong></p>
+    <ul>
+        <li><strong>Aktor:</strong> Pénztáros</li>
+        <li><strong>Folyamat:</strong> 1. Szék kiválasztása -> 2. Magasság megadása -> 3. Rendszer ellenőriz -> 4. Fizetés és Jegykiadás.</li>
+    </ul>
+
+    <h2>2.5 Nem-funkcionális követelmények</h2>
+    <ul>
+        <li><strong>Teljesítmény:</strong> Az ültetési algoritmus válaszideje nem haladhatja meg az 1 másodpercet.</li>
+        <li><strong>Megbízhatóság:</strong> Offline működés, helyi adatbázissal (internet nem szükséges).</li>
+        <li><strong>Használhatóság:</strong> Minimalista felület, betanítást nem igényel.</li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2 - Vízió</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 20px; line-height: 1.6; }
+        .card { background: white; max-width: 850px; margin: 0 auto; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-top: 5px solid #8b5cf6; }
+        h1 { color: #1e293b; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        h2 { color: #4c1d95; margin-top: 40px; font-size: 1.4rem; background: #f3e8ff; padding: 10px 15px; border-radius: 8px; display: inline-block; }
+        h3 { color: #5b21b6; margin-top: 30px; }
+        
+        .highlight-box { background: #f0f9ff; border: 1px solid #bae6fd; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        
+        /* Risk Table specific */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; border-radius: 8px; overflow: hidden; }
+        th { background: #4c1d95; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:nth-child(even) { background: #fafafa; }
+
+        ul.features li { margin-bottom: 10px; list-style: none; padding-left: 20px; position: relative; }
+        ul.features li::before { content: '✔'; color: #10b981; position: absolute; left: 0; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>H2 - Vízió Dokumentum</h1>
+    <p style="color: #64748b; font-style: italic;">Verzió: 1.0 | Dátum: 2025. október 10.</p>
+
+    <h2>Üzleti Célok (Business Case) </h2>
+    <p>A projekt célja egy innovatív, magasság-optimalizált jegyértékesítő szoftver létrehozása színházak számára. A rendszer megoldást kínál a "blokkolt kilátás" problémájára, amikor alacsony nézők elé magas emberek kerülnek.</p>
+
+    <div class="highlight-box">
+        <strong>Probléma:</strong> Jelenleg a pénztárosok "vakon" ültetnek. Ez panaszokhoz vezet.<br>
+        [cite_start]<strong>Megoldás:</strong> A rendszer figyelmeztet blokkolás esetén és automatikusan kezeli a gyerek-kedvezményeket. [cite: 325-333]
+    </div>
+
+    <h2>Piaci Előnyök </h2>
+    <ul>
+        <li><strong>Vásárlóknak:</strong> Garantált élmény, nincs bosszankodás a kilátás miatt.</li>
+        <li><strong>Üzemeltetőnek:</strong> Gyorsabb kiszolgálás (nem kell vitatkozni a kedvezményről), kevesebb reklamáció.</li>
+    </ul>
+
+   <h2>Fő Funkciók (Scope) </h2>
+    <ul class="features">
+        <li><strong>Magasságalapú árazás:</strong> Automata kedvezmény (pl. <120 cm).</li>
+        <li><strong>Ültetési figyelmeztetés:</strong> Valós idejű "Blokkolás veszélye" jelzés.</li>
+        <li><strong>Grafikus nézőtér:</strong> Színkódolt székek (Zöld/Piros).</li>
+    </ul>
+
+    <h2>Kockázati Lista </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Kockázat</th>
+                <th>Valószínűség / Hatás</th>
+                <th>Megoldás (Mitigáció)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pontatlan magasságadat</strong></td>
+                <td>Magas / Közepes</td>
+                <td>Szúrópróbaszerű ellenőrzés mérőléccel a beléptetésnél.</td>
+            </tr>
+            <tr>
+                <td><strong>Adatvesztés</strong></td>
+                <td>Alacsony / Kritikus</td>
+                <td>Automatikus napi biztonsági mentés.</td>
+            </tr>
+            <tr>
+                <td><strong>Lassulás teltháznál</strong></td>
+                <td>Közepes / Magas</td>
+                <td>Algoritmus optimalizálás (csak az előttünk ülőket vizsgálja).</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
