@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H4/3 - UI Terv</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #eef2ff; padding: 20px; color: #333; margin: 0; line-height: 1.6; }
+        .card { background: white; max-width: 900px; margin: 0 auto; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 6px solid #4f46e5; }
+        h1 { color: #312e81; text-align: center; margin-bottom: 20px; }
+        h2 { color: #4338ca; background: #e0e7ff; padding: 10px 15px; border-radius: 6px; margin-top: 40px; border-left: 5px solid #4f46e5; }
+        
+        /* UI Mockup */
+        .ui-mockup { display: flex; border: 2px solid #333; height: 300px; width: 100%; max-width: 600px; margin: 20px auto; background: #fff; }
+        .ui-left { width: 70%; border-right: 2px solid #333; padding: 10px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; align-content: center; }
+        .seat { background: #ddd; height: 20px; border-radius: 4px; }
+        .seat.red { background: #ef4444; }
+        .seat.green { background: #22c55e; }
+        .ui-right { width: 30%; padding: 10px; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; }
+        .ui-input { border: 1px solid #999; height: 25px; background: white; }
+        .ui-btn { background: #333; color: white; text-align: center; padding: 5px; margin-top: auto; font-size: 0.8rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>3. [cite_start]Felhasználói Felület (UI) Tervek [cite: 168-174]</h1>
+    <p>A felhasználói élmény (UX) tervezésekor a hatékonyság volt az elsődleges szempont. A pénztárosoknak gyorsan kell dolgozniuk, ezért a bonyolult menürendszerek helyett egy "egyablakos" (Single Window) elrendezést választottunk. Az alábbi drótváz (wireframe) bemutatja az elrendezést: bal oldalon a vizuális nézőtér térkép, jobb oldalon pedig a tranzakciós panel.</p>
+    
+    <div class="ui-mockup">
+        <div class="ui-left">
+            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+            <div class="seat red"></div><div class="seat green"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+            <div class="seat"></div><div class="seat"></div><div class="seat red"></div><div class="seat red"></div><div class="seat"></div>
+        </div>
+        <div class="ui-right">
+            <div style="font-size:0.8rem; font-weight:bold;">Tranzakció</div>
+            <div style="font-size:0.7rem; margin-top:10px;">Kiválasztva: Sor 2, Szék 5</div>
+            <div style="font-size:0.7rem; margin-top:10px;">Látogató magassága (cm):</div>
+            <div class="ui-input"></div>
+            <div class="ui-btn">ELLENŐRZÉS & FIZETÉS</div>
+        </div>
+    </div>
+    <p style="text-align: center; font-size: 0.9rem; color: #666;"><em>Balra: Interaktív ülésmátrix | Jobbra: Adatbeviteli és fizetési panel</em></p>
+
+    <h3>Színkódok jelentése</h3>
+    <ul>
+        <li><span style="color:green; font-weight:bold;">ZÖLD:</span> Szabad hely, foglalható.</li>
+        <li><span style="color:red; font-weight:bold;">PIROS:</span> Foglalt hely vagy blokkolt kilátás.</li>
+        <li><span style="color:gray; font-weight:bold;">SZÜRKE:</span> Nem üzemelő/lezárt szék.</li>
+    </ul>
+</div>
+
+</body>
+</html>
