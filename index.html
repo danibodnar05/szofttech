@@ -1,272 +1,527 @@
 <!DOCTYPE html>
+
 <html lang="hu">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>ClearView Mobile Hub</title>
+
     <style>
+
         :root {
+
             --header-bg: #0f172a;
+
             --sidebar-bg: #1e293b;
+
             --text-color: #f8fafc;
+
             --accent: #38bdf8;
+
             --header-height: 60px;
+
         }
+
+
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
+
+
         body {
+
             margin: 0;
+
             padding: 0;
+
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
             background-color: #f1f5f9;
+
             height: 100vh;
+
             display: flex;
+
             flex-direction: column;
+
             overflow: hidden;
+
         }
+
+
 
         /* --- HEADER --- */
+
         .mobile-header {
+
             height: var(--header-height);
+
             background-color: var(--header-bg);
+
             color: var(--text-color);
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
-            padding: 0 20px;
+
+            padding: 0 15px;
+
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
             z-index: 1100;
+
             flex-shrink: 0;
+
         }
+
+
 
         .menu-btn, .home-btn {
+
             width: 40px;
+
             height: 40px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             cursor: pointer;
+
             border-radius: 50%;
+
             transition: background 0.2s;
+
         }
+
+
 
         .menu-btn:active, .home-btn:active {
+
             background-color: rgba(255,255,255,0.1);
+
         }
+
+
+
+        /* SVG Ikonok méretezése */
 
         .menu-btn svg, .home-btn svg {
+
             width: 24px;
+
             height: 24px;
+
             stroke: currentColor;
+
             stroke-width: 2;
+
             fill: none;
+
         }
 
+
+
         .app-title {
+
             font-weight: 700;
+
             font-size: 1.1rem;
+
             letter-spacing: 1px;
-            cursor: pointer;
+
+            cursor: pointer; /* Jelzi, hogy kattintható */
+
         }
+
+
 
         .app-title span { color: var(--accent); }
 
+
+
         /* --- OLDALSÓ MENÜ --- */
+
         .sidebar {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             height: 100%;
+
             width: 280px;
+
             background-color: var(--sidebar-bg);
+
             color: var(--text-color);
+
             transform: translateX(-100%);
+
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
             z-index: 1200;
+
             display: flex;
+
             flex-direction: column;
+
             box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+
         }
+
+
 
         .sidebar.open { transform: translateX(0); }
 
+
+
         .sidebar-header {
+
             height: var(--header-height);
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             padding: 0 20px;
+
             border-bottom: 1px solid rgba(255,255,255,0.1);
+
             font-weight: bold;
+
         }
+
+
 
         .close-btn { font-size: 1.5rem; cursor: pointer; color: #94a3b8; }
 
+
+
         .nav-scroll {
+
             overflow-y: auto;
+
             flex-grow: 1;
+
             padding: 10px 0;
+
         }
+
+
 
         .nav-group-title {
+
             font-size: 0.75rem;
+
             text-transform: uppercase;
+
             color: #64748b;
+
             padding: 15px 20px 5px;
+
             font-weight: 700;
+
             letter-spacing: 1px;
+
         }
 
+
+
         .nav-item {
+
             padding: 12px 20px;
+
             display: block;
+
             color: #cbd5e1;
+
             text-decoration: none;
+
             font-size: 0.9rem;
+
             border-left: 4px solid transparent;
+
             transition: all 0.2s;
+
         }
+
+
 
         .nav-item:active { background-color: rgba(255,255,255,0.05); }
 
+
+
         .nav-item.active {
+
             background-color: rgba(56, 189, 248, 0.1);
+
             color: var(--accent);
+
             border-left-color: var(--accent);
+
             font-weight: 600;
+
         }
+
+
 
         .nav-home {
+
             background: rgba(255,255,255,0.05);
+
             margin-bottom: 10px;
+
             border-left: 4px solid #64748b;
+
         }
+
+
 
         /* --- SÖTÉTÍTŐ --- */
+
         .overlay {
+
             position: fixed;
+
             top: 0; left: 0; right: 0; bottom: 0;
+
             background: rgba(0,0,0,0.6);
+
             z-index: 1150;
+
             opacity: 0;
+
             pointer-events: none;
+
             transition: opacity 0.3s;
+
             backdrop-filter: blur(2px);
+
         }
+
         .overlay.active { opacity: 1; pointer-events: auto; }
 
+
+
         /* --- TARTALOM --- */
+
         .content-area {
+
             flex-grow: 1;
+
             position: relative;
+
             background: #f1f5f9;
+
             overflow: hidden;
+
         }
 
+
+
         iframe { width: 100%; height: 100%; border: none; display: block; }
+
         
+
         .loader {
+
             position: absolute; top: 50%; left: 50%;
+
             transform: translate(-50%, -50%); color: #cbd5e1; z-index: 0;
-            font-size: 0.9rem;
+
         }
+
     </style>
+
 </head>
+
 <body>
+
+
 
     <div class="overlay" onclick="closeMenu()"></div>
 
+
+
     <nav class="sidebar" id="sidebar">
+
         <div class="sidebar-header">
+
             <span>Dokumentációk</span>
+
             <div class="close-btn" onclick="closeMenu()">✕</div>
+
         </div>
+
         
+
         <div class="nav-scroll">
+
             <a onclick="goHome()" class="nav-item nav-home active">🏠 Kezdőlap</a>
 
+
+
             <div class="nav-group-title">Projektindítás</div>
+
             <a onclick="loadPage('h1.html', this)" class="nav-item">H1 - Projektterv</a>
+
             <a onclick="loadPage('h2.html', this)" class="nav-item">H2 - Vízió & Analízis</a>
 
+
+
             <div class="nav-group-title">Specifikáció (H3)</div>
+
             <a onclick="loadPage('h3.1.html', this)" class="nav-item">1. Áttekintés & Napló</a>
+
             <a onclick="loadPage('h3.2.html', this)" class="nav-item">2. SRS (Funkciók)</a>
+
             <a onclick="loadPage('h3.3.html', this)" class="nav-item">3. Szótár</a>
+
             <a onclick="loadPage('h3.4.html', this)" class="nav-item">4. Kézikönyv v1</a>
 
+
+
             <div class="nav-group-title">Tervezés (H4)</div>
+
             <a onclick="loadPage('h4.1.html', this)" class="nav-item">1. Analízis Modell</a>
+
             <a onclick="loadPage('h4.2.html', this)" class="nav-item">2. Rendszerterv</a>
+
             <a onclick="loadPage('h4.3.html', this)" class="nav-item">3. UI Terv</a>
+
             <a onclick="loadPage('h4.4.html', this)" class="nav-item">4. Adatbázis Terv</a>
+
             <a onclick="loadPage('h4.5.html', this)" class="nav-item">5. Szótár v1.1</a>
+
             <a onclick="loadPage('h4.6.html', this)" class="nav-item">6. Felh. Doksi v1.1</a>
+
             <a onclick="loadPage('h4.7.html', this)" class="nav-item">7. Munkanapló v1.1</a>
 
-            <div class="nav-group-title" style="color: #d946ef;">Megvalósítás (H5)</div>
-            <a onclick="loadPage('h5.1.html', this)" class="nav-item">1. Megvalósítás Doksi</a>
-            <a onclick="loadPage('h5.2.html', this)" class="nav-item">2. Forráskód Info</a>
-            <a onclick="loadPage('h5.3.html', this)" class="nav-item">3. Tesztelési Terv</a>
-            <a onclick="loadPage('h5.4.html', this)" class="nav-item">4. Munkanapló v1.2</a>
         </div>
+
     </nav>
 
+
+
     <header class="mobile-header">
+
         <div class="menu-btn" onclick="openMenu()">
+
             <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+
         </div>
+
         
+
         <div class="app-title" onclick="goHome()">ClearView <span>Hub</span></div>
+
         
+
         <div class="home-btn" onclick="goHome()">
+
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+
         </div>
+
     </header>
 
+
+
     <main class="content-area">
+
         <div class="loader">Betöltés...</div>
+
         <iframe id="viewer" src="home.html"></iframe>
+
     </main>
 
+
+
     <script>
+
         const sidebar = document.getElementById('sidebar');
+
         const overlay = document.querySelector('.overlay');
+
         const viewer = document.getElementById('viewer');
+
         const navItems = document.querySelectorAll('.nav-item');
 
+
+
         function openMenu() {
+
             sidebar.classList.add('open');
+
             overlay.classList.add('active');
+
         }
+
+
 
         function closeMenu() {
+
             sidebar.classList.remove('open');
+
             overlay.classList.remove('active');
+
         }
+
+
 
         function loadPage(url, element) {
+
             viewer.src = url;
-            
-            // Aktív menüpont átállítása
+
             navItems.forEach(item => item.classList.remove('active'));
+
             element.classList.add('active');
-            
-            // Mobilon bezárjuk a menüt kattintás után
+
             setTimeout(closeMenu, 150);
+
         }
+
+
+
+        // ÚJ FUNKCIÓ: Vissza a kezdőlapra
 
         function goHome() {
+
             viewer.src = 'home.html';
+
             
-            // "Kezdőlap" legyen aktív a menüben
+
+            // Menüben a "Kezdőlap" legyen aktív
+
             navItems.forEach(item => item.classList.remove('active'));
+
             document.querySelector('.nav-home').classList.add('active');
+
             
+
+            // Bezárjuk a menüt ha nyitva lenne
+
             closeMenu();
+
         }
+
     </script>
 
+
+
 </body>
+
 </html>
