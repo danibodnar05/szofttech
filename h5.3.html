@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>H5/3 - Tesztelés</title>
+    <style>body{font-family:'Segoe UI',sans-serif;background:#fff7ed;padding:20px;color:#333}.card{background:white;max-width:900px;margin:0 auto;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border-top:6px solid #f97316}h1{color:#c2410c;text-align:center}table{width:100%;border-collapse:collapse;margin-top:20px}th{background:#f97316;color:white;padding:10px}td{padding:10px;border-bottom:1px solid #ffedd5;text-align:left}</style>
+</head>
+<body>
+<div class="card">
+    <h1>3. [cite_start]Tesztelési Terv és Eredmények [cite: 41-57]</h1>
+    <p>A tesztelés célja az üzleti logika (különösen a magasság-ellenőrzés) helyességének igazolása.</p>
+
+    <h2>Tesztelési Stratégia</h2>
+    <ul>
+        <li><strong>Típus:</strong> Funkcionális feketedoboz tesztelés (Manual Testing).</li>
+        <li><strong>Eszköz:</strong> A kész <code>main.py</code> alkalmazás futtatása.</li>
+    </ul>
+
+    <h2>Tesztesetek (Test Cases)</h2>
+    <table>
+        <tr><th>ID</th><th>Tesztelt Funkció</th><th>Bemenet</th><th>Elvárt Eredmény</th><th>Eredmény</th><th>Státusz</th></tr>
+        <tr><td>TC1</td><td>Normál foglalás</td><td>Szék: 1-1, Magasság: 180cm</td><td>Zöld visszajelzés, Sikeres foglalás</td><td>A szék pirosra váltott</td><td><span style="color:green;font-weight:bold;">SIKERES</span></td></tr>
+        <tr><td>TC2</td><td>Blokkolás észlelése</td><td>Szék: 2-1, Magasság: 160cm<br>(Előtte ül: 180cm)</td><td>FIGYELEM ablak: "Az előtted ülő magasabb"</td><td>Pop-up ablak megjelent</td><td><span style="color:green;font-weight:bold;">SIKERES</span></td></tr>
+        <tr><td>TC3</td><td>Nincs blokkolás</td><td>Szék: 2-2, Magasság: 190cm<br>(Előtte ül: 160cm)</td><td>Nincs figyelmeztetés, Zöld jelzés</td><td>Simán lefoglalta</td><td><span style="color:green;font-weight:bold;">SIKERES</span></td></tr>
+        <tr><td>TC4</td><td>Gyerek kedvezmény</td><td>Magasság: 110cm</td><td>Ár: 1500 Ft (Gyerek)</td><td>Kiírta: 1500 Ft</td><td><span style="color:green;font-weight:bold;">SIKERES</span></td></tr>
+        <tr><td>TC5</td><td>Hibás adat</td><td>Magasság: "kismacska"</td><td>Hibaüzenet: "Csak számot adj meg"</td><td>Hibaablak jelent meg</td><td><span style="color:green;font-weight:bold;">SIKERES</span></td></tr>
+    </table>
+</div>
+</body>
+</html>
