@@ -55,7 +55,6 @@
             background-color: rgba(255,255,255,0.1);
         }
 
-        /* SVG Ikonok méretezése */
         .menu-btn svg, .home-btn svg {
             width: 24px;
             height: 24px;
@@ -170,6 +169,7 @@
         .loader {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%); color: #cbd5e1; z-index: 0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -248,15 +248,22 @@
 
         function loadPage(url, element) {
             viewer.src = url;
+            
+            // Aktív menüpont átállítása
             navItems.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
+            
+            // Mobilon bezárjuk a menüt kattintás után
             setTimeout(closeMenu, 150);
         }
 
         function goHome() {
             viewer.src = 'home.html';
+            
+            // "Kezdőlap" legyen aktív a menüben
             navItems.forEach(item => item.classList.remove('active'));
             document.querySelector('.nav-home').classList.add('active');
+            
             closeMenu();
         }
     </script>
