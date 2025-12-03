@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>H5/2 - Forráskód</title>
+    <style>body{font-family:'Segoe UI',sans-serif;background:#fdf4ff;padding:20px;color:#333}.card{background:white;max-width:900px;margin:0 auto;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border-top:6px solid #d946ef}h1{color:#a21caf;text-align:center}h2{color:#c026d3}pre{background:#f8fafc;border:1px solid #e2e8f0;padding:15px;border-radius:8px;overflow-x:auto}</style>
+</head>
+<body>
+<div class="card">
+    <h1>2. [cite_start]Forráskód és Struktúra [cite: 33-40]</h1>
+    <p>A projekt forráskódja moduláris felépítésű, de a könnyebb hordozhatóság érdekében a H5 fázisban egyetlen futtatható fájlban (<code>main.py</code>) egyesítettük az osztályokat.</p>
+
+    <h2>Projektstruktúra</h2>
+    <pre>
+ClearView_Project/
+├── main.py            # A teljes alkalmazás kódja
+├── theater.db         # Az automatikusan generált adatbázis
+├── README.txt         # Futtatási útmutató
+└── docs/              # HTML dokumentáció (H1-H5)
+    </pre>
+
+    <h2>Osztályok Dokumentációja</h2>
+    <ul>
+        <li><code>DatabaseManager</code>: Singleton-jellegű osztály az SQL műveletekhez (CREATE, INSERT, UPDATE).</li>
+        <li><code>TheaterController</code>: Tartalmazza a <code>calculate_price(height)</code> és <code>check_blocking()</code> metódusokat.</li>
+        <li><code>TheaterApp</code>: A Tkinter ablak (<code>tk.Tk</code>) és a Widget-ek kezelője.</li>
+    </ul>
+
+    <h2>Futtatási Útmutató</h2>
+    <p>A program futtatásához Python 3.10+ szükséges.</p>
+    <code>python main.py</code>
+</div>
+</body>
+</html>
