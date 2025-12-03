@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>H5/1 - Megvalósítás</title>
+    <style>body{font-family:'Segoe UI',sans-serif;background:#f0f9ff;padding:20px;color:#333}.card{background:white;max-width:900px;margin:0 auto;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border-top:6px solid #0ea5e9}h1{color:#0284c7;text-align:center}h2{color:#0369a1;background:#e0f2fe;padding:10px;border-radius:6px;margin-top:40px}ul{line-height:1.8}code{background:#f1f5f9;padding:2px 5px;border-radius:4px;color:#d63384;font-family:monospace}</style>
+</head>
+<body>
+<div class="card">
+    <h1>1. [cite_start]Megvalósítási Dokumentáció [cite: 22-30]</h1>
+    <p>Ez a dokumentum összegzi a ClearView Theater rendszer implementációs fázisát. A fejlesztés során sikerült létrehozni a H4 tervezésben definiált architektúrát, és elkészült a szoftver működőképes prototípusa.</p>
+
+    <h2>Architektúra Megvalósítása</h2>
+    <p>A rendszert szigorúan az <strong>MVC (Model-View-Controller)</strong> minta alapján implementáltuk Pythonban:</p>
+    <ul>
+        <li><strong>Model:</strong> A <code>DatabaseManager</code> osztály kezeli az SQLite adatbázist. Itt tároljuk a székek állapotát (`status`) és a nézők magasságát (`visitor_height`).</li>
+        <li><strong>View:</strong> A <code>TheaterApp</code> osztály felelős a grafikus felületért (Tkinter). Kirajzolja a székeket rács elrendezésben, és kezeli a színkódokat (Zöld/Piros).</li>
+        <li><strong>Controller:</strong> A <code>TheaterController</code> tartalmazza az üzleti logikát. Itt fut a kritikus <code>check_blocking()</code> függvény, ami összehasonlítja az egymás mögött ülők magasságát.</li>
+    </ul>
+
+    <h2>Alkalmazott Technológiák</h2>
+    <ul>
+        <li><strong>Nyelv:</strong> Python 3.12</li>
+        <li><strong>GUI:</strong> Tkinter (Beépített grafikus könyvtár)</li>
+        <li><strong>Adatbázis:</strong> SQLite3 (Helyi fájl alapú tárolás)</li>
+        <li><strong>Környezet:</strong> Visual Studio Code</li>
+    </ul>
+
+    <h2>Kiemelt Algoritmus</h2>
+    <p>A blokkolás-ellenőrzés logikája:</p>
+    <pre style="background:#1e293b; color:#fff; padding:15px; border-radius:8px;">
+if front_height >= current_height:
+    return True, "FIGYELEM! Az előtted ülő néző magasabb!"</pre>
+</div>
+</body>
+</html>
