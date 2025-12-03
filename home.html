@@ -49,8 +49,8 @@
         /* --- NAVIGÁCIÓS KÁRTYÁK --- */
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Kicsit kisebb min-width, hogy kiférjen 5 */
+            gap: 15px;
             margin-top: 30px;
         }
 
@@ -58,7 +58,7 @@
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 16px;
-            padding: 25px 20px;
+            padding: 20px 15px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -79,10 +79,11 @@
         .card-h2::after { background: #8b5cf6; } /* Lila */
         .card-h3::after { background: #10b981; } /* Zöld */
         .card-h4::after { background: #4f46e5; } /* Indigó */
+        .card-h5::after { background: #d946ef; } /* Pink (ÚJ) */
 
-        .card-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        .card-title { font-weight: 700; font-size: 1.2rem; color: #1e293b; display: block; margin-bottom: 5px; }
-        .card-desc { font-size: 0.85rem; color: #64748b; line-height: 1.4; }
+        .card-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+        .card-title { font-weight: 700; font-size: 1.1rem; color: #1e293b; display: block; margin-bottom: 5px; }
+        .card-desc { font-size: 0.8rem; color: #64748b; line-height: 1.4; }
 
         .team-badge {
             margin-top: 40px;
@@ -110,25 +111,31 @@
             <div class="nav-card card-h1" onclick="openFromParent('h1.html')">
                 <span class="card-icon">📋</span>
                 <span class="card-title">H1 - Terv</span>
-                <span class="card-desc">Projektterv, Csapat, Eszközök</span>
+                <span class="card-desc">Csapat & Célok</span>
             </div>
 
             <div class="nav-card card-h2" onclick="openFromParent('h2.html')">
                 <span class="card-icon">🚀</span>
                 <span class="card-title">H2 - Vízió</span>
-                <span class="card-desc">Üzleti célok, Kockázatok</span>
+                <span class="card-desc">Üzlet & Kockázat</span>
             </div>
 
             <div class="nav-card card-h3" onclick="openFromParent('h3.1.html')">
                 <span class="card-icon">⚙️</span>
                 <span class="card-title">H3 - Spec</span>
-                <span class="card-desc">SRS, Szótár, Kézikönyv</span>
+                <span class="card-desc">SRS & Kézikönyv</span>
             </div>
 
             <div class="nav-card card-h4" onclick="openFromParent('h4.1.html')">
                 <span class="card-icon">📐</span>
                 <span class="card-title">H4 - Design</span>
-                <span class="card-desc">Analízis, UI, Adatbázis</span>
+                <span class="card-desc">Analízis & UI</span>
+            </div>
+
+            <div class="nav-card card-h5" onclick="openFromParent('h5.1.html')">
+                <span class="card-icon">💻</span>
+                <span class="card-title">H5 - Build</span>
+                <span class="card-desc">Kód & Teszt</span>
             </div>
 
         </div>
@@ -137,15 +144,11 @@
     </div>
 
     <script>
-        // Ez a trükk: A szülő ablak (index.html) menüjére kattintunk rá kódból!
         function openFromParent(filename) {
-            // Megkeressük a szülőben azt a linket, aminek az onclick-jében benne van a fájlnév
             const parentLink = window.parent.document.querySelector(`a[onclick*="${filename}"]`);
-            
             if (parentLink) {
-                parentLink.click(); // Szimulálunk egy kattintást a menüben
+                parentLink.click(); 
             } else {
-                // Ha véletlenül nem találja (pl. külön nyitottad meg), akkor simán betölti
                 window.location.href = filename;
             }
         }
